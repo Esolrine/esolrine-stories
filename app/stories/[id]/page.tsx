@@ -108,7 +108,7 @@ export default async function StoryPage({ params }: Props) {
             </header>
 
             <div
-              className="prose prose-lg prose-emerald max-w-none font-[family-name:var(--font-eb-garamond)] prose-headings:text-gray-900 prose-p:text-gray-900 prose-p:leading-relaxed prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-li:text-gray-900 prose-blockquote:text-gray-800"
+              className="prose prose-lg prose-emerald max-w-none font-[family-name:var(--font-eb-garamond)] text-[#1a1a1a] prose-headings:text-black prose-p:text-[#1a1a1a] prose-p:leading-relaxed prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-li:text-[#1a1a1a] prose-blockquote:text-[#2c2c2c] prose-strong:text-black"
               dangerouslySetInnerHTML={{ __html: story.content }}
             />
           </div>

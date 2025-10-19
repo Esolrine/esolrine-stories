@@ -37,7 +37,7 @@ export default function RichTextEditor({
     editorProps: {
       attributes: {
         class:
-          'prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none focus:outline-none min-h-[300px] p-4 text-gray-900 font-[family-name:var(--font-eb-garamond)] prose-p:text-gray-900 prose-headings:text-gray-900 prose-li:text-gray-900',
+          'prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none focus:outline-none min-h-[300px] p-4 text-[#1a1a1a] font-[family-name:var(--font-eb-garamond)] prose-p:text-[#1a1a1a] prose-headings:text-black prose-li:text-[#1a1a1a] prose-strong:text-black',
       },
     },
   });
