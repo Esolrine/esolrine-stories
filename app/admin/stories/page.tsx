@@ -26,7 +26,7 @@ export default async function StoriesPage() {
 
       {stories.length === 0 ? (
         <div className="bg-white rounded-lg shadow p-12 text-center">
-          <p className="text-gray-500 mb-4">No stories yet</p>
+          <p className="text-gray-700 mb-4">No stories yet</p>
           <Link
             href="/admin/stories/new"
             className="text-emerald-600 hover:text-emerald-700 font-medium"

@@ -98,7 +98,7 @@ export default async function AdminDashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium text-gray-900">{story.title}</h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-600">
                       {new Date(story.updated_at).toLocaleDateString()}
                     </p>
                   </div>

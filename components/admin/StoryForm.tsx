@@ -96,7 +96,7 @@ export default function StoryForm({ story }: StoryFormProps) {
             required
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900"
           />
         </div>
 
@@ -110,7 +110,7 @@ export default function StoryForm({ story }: StoryFormProps) {
             rows={3}
             value={formData.excerpt}
             onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900 placeholder:text-gray-500"
             placeholder="A short summary of the story..."
           />
         </div>
@@ -132,7 +132,7 @@ export default function StoryForm({ story }: StoryFormProps) {
             type="file"
             accept="image/*"
             onChange={handleCoverImageUpload}
-            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+            className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
           />
         </div>
 
@@ -145,7 +145,7 @@ export default function StoryForm({ story }: StoryFormProps) {
             id="tags"
             value={formData.tags}
             onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900 placeholder:text-gray-500"
             placeholder="magic, adventure, fantasy"
           />
         </div>
@@ -181,7 +181,7 @@ export default function StoryForm({ story }: StoryFormProps) {
               id="publishDate"
               value={formData.publishDate}
               onChange={(e) => setFormData({ ...formData, publishDate: e.target.value })}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900"
             />
           </div>
         </div>
