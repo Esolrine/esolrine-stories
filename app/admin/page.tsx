@@ -20,19 +20,19 @@ export default async function AdminDashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-500 mb-2">
+          <h3 className="text-sm font-medium text-gray-700 mb-2">
             Total Stories
           </h3>
           <p className="text-3xl font-bold text-gray-900">{stories.length}</p>
         </div>
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-500 mb-2">Published</h3>
+          <h3 className="text-sm font-medium text-gray-700 mb-2">Published</h3>
           <p className="text-3xl font-bold text-emerald-600">
             {publishedCount}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-500 mb-2">Drafts</h3>
+          <h3 className="text-sm font-medium text-gray-700 mb-2">Drafts</h3>
           <p className="text-3xl font-bold text-amber-600">{draftCount}</p>
         </div>
       </div>
