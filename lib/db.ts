@@ -65,19 +65,20 @@ export async function createStory(data: {
   published?: boolean;
   publishDate?: Date;
 }) {
-  const { rows } = await sql`
-    INSERT INTO stories (title, content, excerpt, cover_image, tags, published, publish_date)
-    VALUES (
-      ${data.title},
-      ${data.content},
-      ${data.excerpt},
-      ${data.coverImage || null},
-      ${data.tags || []},
-      ${data.published || false},
-      ${data.publishDate || new Date()}
-    )
-    RETURNING *
-  `;
+  const { rows } = await sql.query(
+    `INSERT INTO stories (title, content, excerpt, cover_image, tags, published, publish_date)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)
+     RETURNING *`,
+    [
+      data.title,
+      data.content,
+      data.excerpt,
+      data.coverImage || null,
+      data.tags || [],
+      data.published || false,
+      data.publishDate || new Date(),
+    ]
+  );
   return rows[0] as Story;
 }
 
