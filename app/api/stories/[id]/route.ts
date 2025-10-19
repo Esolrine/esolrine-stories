@@ -1,0 +1,81 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { getStoryById, updateStory, deleteStory } from '@/lib/db';
+import { isAuthenticated } from '@/lib/session';
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const story = await getStoryById(parseInt(id));
+
+    if (!story) {
+      return NextResponse.json({ error: 'Story not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(story);
+  } catch (error) {
+    console.error('Error fetching story:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch story' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const authenticated = await isAuthenticated();
+    if (!authenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { id } = await params;
+    const data = await request.json();
+
+    const updatedStory = await updateStory(parseInt(id), {
+      title: data.title,
+      content: data.content,
+      excerpt: data.excerpt,
+      coverImage: data.coverImage,
+      tags: data.tags,
+      published: data.published,
+      publishDate: data.publishDate ? new Date(data.publishDate) : undefined,
+    });
+
+    return NextResponse.json(updatedStory);
+  } catch (error) {
+    console.error('Error updating story:', error);
+    return NextResponse.json(
+      { error: 'Failed to update story' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const authenticated = await isAuthenticated();
+    if (!authenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { id } = await params;
+    await deleteStory(parseInt(id));
+
+    return NextResponse.json({ message: 'Story deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting story:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete story' },
+      { status: 500 }
+    );
+  }
+}
