@@ -94,7 +94,7 @@ export async function updateStory(
   }
 ) {
   const updates: string[] = [];
-  const values: any[] = [];
+  const values: (string | string[] | boolean | Date | number)[] = [];
   let paramCount = 1;
 
   if (data.title !== undefined) {

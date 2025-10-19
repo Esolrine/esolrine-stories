@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import RichTextEditor from '@/components/editor/RichTextEditor';
 import { Story } from '@/lib/db';

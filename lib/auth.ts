@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ profile }) {
       // Only allow the admin GitHub user to sign in
       const adminUsername = process.env.ADMIN_GITHUB_USERNAME;
 
@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
         return false;
       }
 
-      // @ts-ignore - GitHub profile has login property
+      // @ts-expect-error - GitHub profile has login property
       const username = profile?.login;
 
       if (username === adminUsername) {
@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
 
       return false;
     },
-    async session({ session, token }) {
+    async session({ session }) {
       return session;
     },
   },
