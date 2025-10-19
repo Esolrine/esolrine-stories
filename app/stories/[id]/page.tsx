@@ -107,7 +107,7 @@ export default async function StoryPage({ params }: Props) {
                     </span>
                   ))}
                 </div>
-                <time className="text-sm text-gray-500">
+                <time className="text-sm text-gray-600">
                   {new Date(story.publish_date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -118,7 +118,7 @@ export default async function StoryPage({ params }: Props) {
             </header>
 
             <div
-              className="prose prose-lg prose-emerald max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md"
+              className="prose prose-lg prose-emerald max-w-none font-[family-name:var(--font-eb-garamond)] prose-headings:text-gray-900 prose-p:text-gray-900 prose-p:leading-relaxed prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-li:text-gray-900 prose-blockquote:text-gray-800"
               dangerouslySetInnerHTML={{ __html: story.content }}
             />
           </div>
