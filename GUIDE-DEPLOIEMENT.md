@@ -92,19 +92,19 @@ Votre code est maintenant sur GitHub !
 
 Le premier déploiement va échouer, c'est normal ! On va configurer la base de données maintenant.
 
-## Étape 4 : Configurer Vercel Postgres (Base de données)
+## Étape 4 : Configurer Neon Postgres (Base de données)
 
 1. Restez sur Vercel, allez sur votre projet
-2. Cliquez sur l'onglet **Storage** (en haut)
-3. Cliquez sur **Create Database**
-4. Sélectionnez **Postgres**
-5. Donnez-lui un nom : `esolrine-db` (ou ce que vous voulez)
-6. Choisissez la région la plus proche de vous
-7. Cliquez sur **Create**
+2. Cliquez sur l'onglet **Marketplace** (en haut)
+3. Cherchez **Neon** ou cliquez sur la carte **Neon** (Serverless Postgres)
+4. Cliquez sur **Add Integration**
+5. Sélectionnez votre projet Esolrine et cliquez sur **Continue**
+6. Autorisez l'intégration et suivez les instructions
+7. Neon va créer automatiquement une base de données
 
-8. Une fois créée, allez dans l'onglet **.env.local** de votre base de données
-9. Vous verrez plusieurs variables commençant par `POSTGRES_`
-10. **NE FERMEZ PAS** cette page, on va copier ces variables
+8. Une fois l'intégration terminée, allez dans **Settings** → **Environment Variables**
+9. Vous verrez plusieurs variables commençant par `POSTGRES_` ou `DATABASE_`
+10. **NOTEZ** ces variables, elles sont déjà configurées automatiquement !
 
 ## Étape 5 : Configurer Vercel Blob (Stockage d'images)
 
@@ -130,22 +130,15 @@ openssl rand -base64 32
 Si vous n'avez pas `openssl`, vous pouvez utiliser ce site : https://generate-secret.vercel.app/32
 (Cliquez sur "Generate" et copiez le résultat)
 
-## Étape 7 : Ajouter TOUTES les variables d'environnement
+## Étape 7 : Ajouter les variables d'environnement manquantes
 
 1. Dans Vercel, allez dans votre projet → **Settings** → **Environment Variables**
 
-2. Ajoutez ces variables **UNE PAR UNE** (cliquez sur "Add New" à chaque fois) :
+2. Vérifiez que Neon a bien ajouté les variables Postgres (elles commencent par `POSTGRES_` ou `DATABASE_`). Si elles ne sont pas là, retournez à l'étape 4.
 
-### Variables Postgres (de l'étape 4)
-Copiez les valeurs depuis l'onglet .env.local de votre base de données Postgres :
-- `POSTGRES_URL` = (la valeur de Vercel)
-- `POSTGRES_PRISMA_URL` = (la valeur de Vercel)
-- `POSTGRES_URL_NO_SSL` = (la valeur de Vercel)
-- `POSTGRES_URL_NON_POOLING` = (la valeur de Vercel)
-- `POSTGRES_USER` = (la valeur de Vercel)
-- `POSTGRES_HOST` = (la valeur de Vercel)
-- `POSTGRES_PASSWORD` = (la valeur de Vercel)
-- `POSTGRES_DATABASE` = (la valeur de Vercel)
+3. Ajoutez maintenant les variables **UNE PAR UNE** (cliquez sur "Add New" à chaque fois) :
+
+**IMPORTANT** : Les variables Postgres de Neon sont déjà configurées automatiquement ! Ne les re-créez pas.
 
 ### Variable Blob (de l'étape 5)
 - `BLOB_READ_WRITE_TOKEN` = (la valeur que vous avez copiée)
