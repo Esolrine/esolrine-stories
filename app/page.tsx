@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import { getStories } from '@/lib/db';
+import { getStories, Story } from '@/lib/db';
 import SocialLinks from '@/components/SocialLinks';
 
 export default async function Home() {
-  let stories = [];
+  let stories: Story[] = [];
 
   try {
     stories = await getStories(true); // Only published stories
-  } catch (error) {
+  } catch {
     // Database not initialized yet
     console.log('Database not initialized yet');
   }

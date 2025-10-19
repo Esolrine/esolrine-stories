@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     }));
-  } catch (error) {
+  } catch {
     // Database not initialized yet, return empty story list
     console.log('Database not initialized, sitemap will contain only homepage');
   }

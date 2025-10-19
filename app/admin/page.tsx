@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { getStories } from '@/lib/db';
+import { getStories, Story } from '@/lib/db';
 
 export default async function AdminDashboard() {
-  let stories = [];
+  let stories: Story[] = [];
 
   try {
     stories = await getStories(false);
-  } catch (error) {
+  } catch {
     // Database not initialized yet
     console.log('Database not initialized yet');
   }
