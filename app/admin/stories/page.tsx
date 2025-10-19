@@ -3,7 +3,14 @@ import { getStories } from '@/lib/db';
 import DeleteButton from '@/components/admin/DeleteButton';
 
 export default async function StoriesPage() {
-  const stories = await getStories(false);
+  let stories = [];
+
+  try {
+    stories = await getStories(false);
+  } catch (error) {
+    // Database not initialized yet
+    console.log('Database not initialized yet');
+  }
 
   return (
     <div className="max-w-6xl">

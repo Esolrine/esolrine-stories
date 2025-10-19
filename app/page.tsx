@@ -3,7 +3,14 @@ import { getStories } from '@/lib/db';
 import SocialLinks from '@/components/SocialLinks';
 
 export default async function Home() {
-  const stories = await getStories(true); // Only published stories
+  let stories = [];
+
+  try {
+    stories = await getStories(true); // Only published stories
+  } catch (error) {
+    // Database not initialized yet
+    console.log('Database not initialized yet');
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">

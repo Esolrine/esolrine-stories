@@ -2,7 +2,15 @@ import Link from 'next/link';
 import { getStories } from '@/lib/db';
 
 export default async function AdminDashboard() {
-  const stories = await getStories(false);
+  let stories = [];
+
+  try {
+    stories = await getStories(false);
+  } catch (error) {
+    // Database not initialized yet
+    console.log('Database not initialized yet');
+  }
+
   const publishedCount = stories.filter((s) => s.published).length;
   const draftCount = stories.filter((s) => !s.published).length;
 
