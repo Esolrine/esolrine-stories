@@ -1,0 +1,65 @@
+{
+  "common": {
+    "writings": "Writings",
+    "by": "by",
+    "readMore": "Read more",
+    "published": "Published",
+    "draft": "Draft",
+    "tags": "Tags",
+    "noTags": "No tags"
+  },
+  "home": {
+    "title": "Writings",
+    "description": "Literary stories and narratives",
+    "noStories": "No stories published yet."
+  },
+  "story": {
+    "backToHome": "← Back to all stories",
+    "notFound": "Story not found",
+    "loading": "Loading..."
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "stories": "Stories",
+      "logout": "Logout"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "welcome": "Welcome to the admin panel"
+    },
+    "login": {
+      "title": "Admin Login",
+      "button": "Sign in with GitHub"
+    },
+    "stories": {
+      "title": "Manage Stories",
+      "create": "Create New Story",
+      "noStories": "No stories yet.",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this story?",
+      "editStory": "Edit Story",
+      "newStory": "New Story",
+      "cancel": "Cancel",
+      "save": "Save Story",
+      "saving": "Saving..."
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "Enter story title",
+      "excerpt": "Excerpt",
+      "excerptPlaceholder": "Short summary of the story",
+      "content": "Content",
+      "coverImage": "Cover Image",
+      "coverImageUrl": "Cover image URL",
+      "tags": "Tags",
+      "tagsPlaceholder": "Comma-separated tags",
+      "publishDate": "Publish Date",
+      "published": "Published",
+      "language": "Language",
+      "english": "English",
+      "french": "French"
+    }
+  }
+}

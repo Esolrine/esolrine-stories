@@ -1,0 +1,65 @@
+{
+  "common": {
+    "writings": "Écrits",
+    "by": "par",
+    "readMore": "Lire la suite",
+    "published": "Publié",
+    "draft": "Brouillon",
+    "tags": "Tags",
+    "noTags": "Aucun tag"
+  },
+  "home": {
+    "title": "Écrits",
+    "description": "Histoires et récits littéraires",
+    "noStories": "Aucune histoire publiée pour le moment."
+  },
+  "story": {
+    "backToHome": "← Retour aux histoires",
+    "notFound": "Histoire introuvable",
+    "loading": "Chargement..."
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "stories": "Histoires",
+      "logout": "Déconnexion"
+    },
+    "dashboard": {
+      "title": "Tableau de bord administrateur",
+      "welcome": "Bienvenue dans le panneau d'administration"
+    },
+    "login": {
+      "title": "Connexion administrateur",
+      "button": "Se connecter avec GitHub"
+    },
+    "stories": {
+      "title": "Gérer les histoires",
+      "create": "Créer une nouvelle histoire",
+      "noStories": "Aucune histoire pour le moment.",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette histoire ?",
+      "editStory": "Modifier l'histoire",
+      "newStory": "Nouvelle histoire",
+      "cancel": "Annuler",
+      "save": "Enregistrer l'histoire",
+      "saving": "Enregistrement..."
+    },
+    "form": {
+      "title": "Titre",
+      "titlePlaceholder": "Entrez le titre de l'histoire",
+      "excerpt": "Extrait",
+      "excerptPlaceholder": "Résumé court de l'histoire",
+      "content": "Contenu",
+      "coverImage": "Image de couverture",
+      "coverImageUrl": "URL de l'image de couverture",
+      "tags": "Tags",
+      "tagsPlaceholder": "Tags séparés par des virgules",
+      "publishDate": "Date de publication",
+      "published": "Publié",
+      "language": "Langue",
+      "english": "Anglais",
+      "french": "Français"
+    }
+  }
+}

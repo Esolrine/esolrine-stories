@@ -46,6 +46,8 @@ export async function PUT(
       tags: data.tags,
       published: data.published,
       publishDate: data.publishDate ? new Date(data.publishDate) : undefined,
+      language: data.language,
+      translationId: data.translationId,
     });
 
     // Revalidate all pages that might show this story

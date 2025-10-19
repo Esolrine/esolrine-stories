@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "@/components/SessionProvider";
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
+import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,15 +47,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${inter.variable} ${ebGaramond.variable} font-sans antialiased`}>
-        <SessionProvider>{children}</SessionProvider>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <SessionProvider>
+            <div className="fixed top-4 right-4 z-50">
+              <LocaleSwitcher />
+            </div>
+            {children}
+          </SessionProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -9,6 +9,8 @@ export interface Story {
   tags: string[];
   published: boolean;
   publish_date: Date;
+  language: 'en' | 'fr';
+  translation_id: number | null;
   created_at: Date;
   updated_at: Date;
 }
@@ -24,16 +26,26 @@ export async function createStoriesTable() {
       tags TEXT[] DEFAULT '{}',
       published BOOLEAN DEFAULT false,
       publish_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      language VARCHAR(2) DEFAULT 'en' NOT NULL,
+      translation_id INTEGER REFERENCES stories(id) ON DELETE SET NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `;
 }
 
-export async function getStories(publishedOnly: boolean = false) {
-  const query = publishedOnly
-    ? sql`SELECT * FROM stories WHERE published = true ORDER BY publish_date DESC`
-    : sql`SELECT * FROM stories ORDER BY updated_at DESC`;
+export async function getStories(publishedOnly: boolean = false, language?: 'en' | 'fr') {
+  let query;
+
+  if (publishedOnly && language) {
+    query = sql`SELECT * FROM stories WHERE published = true AND language = ${language} ORDER BY publish_date DESC`;
+  } else if (publishedOnly) {
+    query = sql`SELECT * FROM stories WHERE published = true ORDER BY publish_date DESC`;
+  } else if (language) {
+    query = sql`SELECT * FROM stories WHERE language = ${language} ORDER BY updated_at DESC`;
+  } else {
+    query = sql`SELECT * FROM stories ORDER BY updated_at DESC`;
+  }
 
   const { rows } = await query;
   return rows as Story[];
@@ -64,10 +76,12 @@ export async function createStory(data: {
   tags?: string[];
   published?: boolean;
   publishDate?: Date;
+  language?: 'en' | 'fr';
+  translationId?: number;
 }) {
   const { rows } = await sql.query(
-    `INSERT INTO stories (title, content, excerpt, cover_image, tags, published, publish_date)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
+    `INSERT INTO stories (title, content, excerpt, cover_image, tags, published, publish_date, language, translation_id)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
      RETURNING *`,
     [
       data.title,
@@ -77,6 +91,8 @@ export async function createStory(data: {
       data.tags || [],
       data.published || false,
       data.publishDate || new Date(),
+      data.language || 'en',
+      data.translationId || null,
     ]
   );
   return rows[0] as Story;
@@ -92,10 +108,12 @@ export async function updateStory(
     tags?: string[];
     published?: boolean;
     publishDate?: Date;
+    language?: 'en' | 'fr';
+    translationId?: number;
   }
 ) {
   const updates: string[] = [];
-  const values: (string | string[] | boolean | Date | number)[] = [];
+  const values: (string | string[] | boolean | Date | number | null)[] = [];
   let paramCount = 1;
 
   if (data.title !== undefined) {
@@ -126,6 +144,14 @@ export async function updateStory(
     updates.push(`publish_date = $${paramCount++}`);
     values.push(data.publishDate);
   }
+  if (data.language !== undefined) {
+    updates.push(`language = $${paramCount++}`);
+    values.push(data.language);
+  }
+  if (data.translationId !== undefined) {
+    updates.push(`translation_id = $${paramCount++}`);
+    values.push(data.translationId);
+  }
 
   updates.push(`updated_at = CURRENT_TIMESTAMP`);
   values.push(id);
@@ -140,4 +166,26 @@ export async function updateStory(
 
 export async function deleteStory(id: number) {
   await sql`DELETE FROM stories WHERE id = ${id}`;
+}
+
+// Migration function to add language and translation_id columns to existing table
+export async function migrateStoriesTable() {
+  try {
+    // Add language column if it doesn't exist
+    await sql`
+      ALTER TABLE stories
+      ADD COLUMN IF NOT EXISTS language VARCHAR(2) DEFAULT 'en' NOT NULL
+    `;
+
+    // Add translation_id column if it doesn't exist
+    await sql`
+      ALTER TABLE stories
+      ADD COLUMN IF NOT EXISTS translation_id INTEGER REFERENCES stories(id) ON DELETE SET NULL
+    `;
+
+    console.log('Migration completed successfully');
+  } catch (error) {
+    console.error('Migration failed:', error);
+    throw error;
+  }
 }

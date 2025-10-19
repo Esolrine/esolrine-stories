@@ -43,6 +43,8 @@ export async function POST(request: NextRequest) {
       tags: data.tags || [],
       published: data.published || false,
       publishDate: data.publishDate ? new Date(data.publishDate) : new Date(),
+      language: data.language || 'en',
+      translationId: data.translationId,
     });
 
     // Revalidate homepage to show new story

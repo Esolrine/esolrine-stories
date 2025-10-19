@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { getStories, Story } from '@/lib/db';
 import SocialLinks from '@/components/SocialLinks';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export default async function Home() {
+  const locale = await getLocale();
+  const t = await getTranslations('home');
+
   let stories: Story[] = [];
 
   try {
-    stories = await getStories(true); // Only published stories
+    stories = await getStories(true, locale as 'en' | 'fr'); // Only published stories in current language
   } catch {
     // Database not initialized yet
     console.log('Database not initialized yet');
@@ -20,7 +24,7 @@ export default async function Home() {
             Esolrine
           </h1>
           <p className="text-lg text-gray-600 mb-6">
-            Short stories from a world of solarpunk magic
+            {t('description')}
           </p>
           <SocialLinks />
         </header>
@@ -29,7 +33,7 @@ export default async function Home() {
           {stories.length === 0 ? (
             <div className="bg-white rounded-lg shadow-md p-12 text-center">
               <p className="text-gray-500 text-lg">
-                No stories published yet. Check back soon!
+                {t('noStories')}
               </p>
             </div>
           ) : (
@@ -55,7 +59,7 @@ export default async function Home() {
                           {story.title}
                         </h2>
                         <time className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">
-                          {new Date(story.publish_date).toLocaleDateString('en-US', {
+                          {new Date(story.publish_date).toLocaleDateString(locale, {
                             year: 'numeric',
                             month: 'short',
                             day: 'numeric',

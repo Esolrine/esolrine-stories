@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import SocialLinks from '@/components/SocialLinks';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -49,10 +50,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StoryPage({ params }: Props) {
   const { id } = await params;
+  const locale = await getLocale();
+  const t = await getTranslations('story');
   const story = await getStoryById(parseInt(id));
 
   if (!story || !story.published) {
     notFound();
+  }
+
+  // Get translation if it exists
+  let translatedStory = null;
+  if (story.translation_id) {
+    translatedStory = await getStoryById(story.translation_id);
   }
 
   return (
@@ -76,7 +85,7 @@ export default async function StoryPage({ params }: Props) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Back to Stories
+            {t('backToHome')}
           </Link>
         </nav>
 
@@ -98,7 +107,7 @@ export default async function StoryPage({ params }: Props) {
                   ))}
                 </div>
                 <time className="text-sm text-gray-500">
-                  {new Date(story.publish_date).toLocaleDateString('en-US', {
+                  {new Date(story.publish_date).toLocaleDateString(locale, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -111,6 +120,20 @@ export default async function StoryPage({ params }: Props) {
               className="prose prose-lg prose-emerald max-w-none font-[family-name:var(--font-eb-garamond)] text-[#1a1a1a] prose-headings:text-black prose-p:text-[#1a1a1a] prose-p:leading-relaxed prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-li:text-[#1a1a1a] prose-blockquote:text-[#2c2c2c] prose-strong:text-black"
               dangerouslySetInnerHTML={{ __html: story.content }}
             />
+
+            {translatedStory && (
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <p className="text-sm text-gray-600 mb-2">
+                  {story.language === 'en' ? 'Version française disponible' : 'English version available'}
+                </p>
+                <Link
+                  href={`/stories/${translatedStory.id}`}
+                  className="text-emerald-600 hover:text-emerald-700 font-medium"
+                >
+                  {translatedStory.title} →
+                </Link>
+              </div>
+            )}
           </div>
         </article>
 
