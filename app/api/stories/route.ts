@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getStories, createStory } from '@/lib/db';
 import { isAuthenticated } from '@/lib/session';
 
@@ -43,6 +44,11 @@ export async function POST(request: NextRequest) {
       published: data.published || false,
       publishDate: data.publishDate ? new Date(data.publishDate) : new Date(),
     });
+
+    // Revalidate homepage to show new story
+    revalidatePath('/');
+    revalidatePath('/admin');
+    revalidatePath('/admin/stories');
 
     return NextResponse.json(story, { status: 201 });
   } catch (error) {

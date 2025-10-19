@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getStoryById, updateStory, deleteStory } from '@/lib/db';
 import { isAuthenticated } from '@/lib/session';
 
@@ -47,6 +48,12 @@ export async function PUT(
       publishDate: data.publishDate ? new Date(data.publishDate) : undefined,
     });
 
+    // Revalidate all pages that might show this story
+    revalidatePath('/');
+    revalidatePath(`/stories/${id}`);
+    revalidatePath('/admin');
+    revalidatePath('/admin/stories');
+
     return NextResponse.json(updatedStory);
   } catch (error) {
     console.error('Error updating story:', error);
@@ -69,6 +76,11 @@ export async function DELETE(
 
     const { id } = await params;
     await deleteStory(parseInt(id));
+
+    // Revalidate all pages after deletion
+    revalidatePath('/');
+    revalidatePath('/admin');
+    revalidatePath('/admin/stories');
 
     return NextResponse.json({ message: 'Story deleted successfully' });
   } catch (error) {

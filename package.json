@@ -12,6 +12,7 @@
     "@auth/core": "^0.34.2",
     "@tiptap/extension-image": "^3.7.2",
     "@tiptap/extension-link": "^3.7.2",
+    "@tiptap/extension-text-align": "^3.7.2",
     "@tiptap/pm": "^3.7.2",
     "@tiptap/react": "^3.7.2",
     "@tiptap/starter-kit": "^3.7.2",

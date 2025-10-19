@@ -4,6 +4,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
+import TextAlign from '@tiptap/extension-text-align';
 import { useCallback } from 'react';
 
 interface RichTextEditorProps {
@@ -28,6 +29,10 @@ export default function RichTextEditor({
         HTMLAttributes: {
           class: 'text-emerald-600 hover:text-emerald-700 underline',
         },
+      }),
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+        alignments: ['left', 'center', 'right', 'justify'],
       }),
     ],
     content,
@@ -142,6 +147,47 @@ export default function RichTextEditor({
           title="Heading 3"
         >
           H3
+        </button>
+        <div className="w-px bg-gray-300 mx-1" />
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().setTextAlign('left').run()}
+          className={`px-3 py-1 rounded hover:bg-gray-200 ${
+            editor.isActive({ textAlign: 'left' }) ? 'bg-gray-300' : ''
+          }`}
+          title="Align Left"
+        >
+          ⬅
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().setTextAlign('center').run()}
+          className={`px-3 py-1 rounded hover:bg-gray-200 ${
+            editor.isActive({ textAlign: 'center' }) ? 'bg-gray-300' : ''
+          }`}
+          title="Center"
+        >
+          ↔
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().setTextAlign('right').run()}
+          className={`px-3 py-1 rounded hover:bg-gray-200 ${
+            editor.isActive({ textAlign: 'right' }) ? 'bg-gray-300' : ''
+          }`}
+          title="Align Right"
+        >
+          ➡
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+          className={`px-3 py-1 rounded hover:bg-gray-200 ${
+            editor.isActive({ textAlign: 'justify' }) ? 'bg-gray-300' : ''
+          }`}
+          title="Justify"
+        >
+          ≡
         </button>
         <div className="w-px bg-gray-300 mx-1" />
         <button
