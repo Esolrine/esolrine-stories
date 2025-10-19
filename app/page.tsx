@@ -13,14 +13,14 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-12 md:py-16">
-        <header className="text-center mb-12 md:mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+        <header className="text-center mb-12 border-b border-gray-200 pb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 font-[family-name:var(--font-eb-garamond)]">
             Esolrine
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-6">
-            Stories from a world of magic and possibility
+          <p className="text-lg text-gray-600 mb-6">
+            Short stories from a world of solarpunk magic
           </p>
           <SocialLinks />
         </header>
@@ -33,47 +33,47 @@ export default async function Home() {
               </p>
             </div>
           ) : (
-            <div className="space-y-8">
+            <div className="space-y-6">
               {stories.map((story) => (
                 <article
                   key={story.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                  className="bg-white border border-gray-200 rounded-lg hover:border-emerald-300 transition-all"
                 >
-                  <Link href={`/stories/${story.id}`} className="block">
+                  <Link href={`/stories/${story.id}`} className="flex gap-6 p-6 md:p-8">
                     {story.cover_image && (
-                      <div className="aspect-video w-full overflow-hidden">
+                      <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-md overflow-hidden bg-gray-100">
                         <img
                           src={story.cover_image}
                           alt={story.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                     )}
-                    <div className="p-6 md:p-8">
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 hover:text-emerald-600 transition-colors">
-                        {story.title}
-                      </h2>
-                      <p className="text-gray-600 mb-4 leading-relaxed">
-                        {story.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between flex-wrap gap-4">
-                        <div className="flex flex-wrap gap-2">
-                          {story.tags && story.tags.length > 0 && story.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <time className="text-sm text-gray-500">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 hover:text-emerald-700 transition-colors font-[family-name:var(--font-eb-garamond)]">
+                          {story.title}
+                        </h2>
+                        <time className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">
                           {new Date(story.publish_date).toLocaleDateString('en-US', {
                             year: 'numeric',
-                            month: 'long',
+                            month: 'short',
                             day: 'numeric',
                           })}
                         </time>
+                      </div>
+                      <p className="text-gray-700 mb-4 leading-relaxed line-clamp-2 font-[family-name:var(--font-eb-garamond)]">
+                        {story.excerpt}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {story.tags && story.tags.length > 0 && story.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2.5 py-0.5 bg-gray-100 text-gray-700 rounded text-xs font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </Link>

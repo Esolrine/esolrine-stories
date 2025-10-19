@@ -56,15 +56,15 @@ export default async function StoryPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8 md:py-12">
-        <nav className="mb-8">
+        <nav className="mb-8 max-w-3xl mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium"
+            className="inline-flex items-center text-gray-600 hover:text-gray-900 text-sm font-medium"
           >
             <svg
-              className="w-5 h-5 mr-2"
+              className="w-4 h-4 mr-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -80,20 +80,10 @@ export default async function StoryPage({ params }: Props) {
           </Link>
         </nav>
 
-        <article className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-          {story.cover_image && (
-            <div className="aspect-video w-full overflow-hidden">
-              <img
-                src={story.cover_image}
-                alt={story.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-
-          <div className="p-6 md:p-10">
-            <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        <article className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg">
+          <div className="p-6 md:p-12">
+            <header className="mb-10">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-[family-name:var(--font-eb-garamond)] leading-tight">
                 {story.title}
               </h1>
               <div className="flex items-center justify-between flex-wrap gap-4 pb-6 border-b border-gray-200">
@@ -101,13 +91,13 @@ export default async function StoryPage({ params }: Props) {
                   {story.tags && story.tags.length > 0 && story.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium"
+                      className="px-2.5 py-1 bg-gray-100 text-gray-700 rounded text-sm"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <time className="text-sm text-gray-600">
+                <time className="text-sm text-gray-500">
                   {new Date(story.publish_date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -125,12 +115,9 @@ export default async function StoryPage({ params }: Props) {
         </article>
 
         <div className="max-w-3xl mx-auto mt-12 text-center">
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Enjoyed this story?
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Follow Esolrine for more stories from this magical world
+          <div className="border-t border-gray-200 pt-8">
+            <p className="text-gray-600 mb-4 text-sm">
+              Follow Esolrine for more stories
             </p>
             <SocialLinks />
           </div>
