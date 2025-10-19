@@ -5,6 +5,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
+import { IndentExtension } from './IndentExtension';
 import { useCallback } from 'react';
 
 interface RichTextEditorProps {
@@ -33,6 +34,11 @@ export default function RichTextEditor({
       TextAlign.configure({
         types: ['heading', 'paragraph'],
         alignments: ['left', 'center', 'right', 'justify'],
+      }),
+      IndentExtension.configure({
+        types: ['paragraph', 'heading'],
+        indentLevels: [0, 2, 4, 6, 8],
+        defaultIndentLevel: 0,
       }),
     ],
     content,
@@ -188,6 +194,23 @@ export default function RichTextEditor({
           title="Justify"
         >
           ≡
+        </button>
+        <div className="w-px bg-gray-300 mx-1" />
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().outdent().run()}
+          className="px-3 py-1 rounded hover:bg-gray-200"
+          title="Decrease Indent"
+        >
+          ⇤
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().indent().run()}
+          className="px-3 py-1 rounded hover:bg-gray-200"
+          title="Increase Indent (Alinéa)"
+        >
+          ⇥
         </button>
         <div className="w-px bg-gray-300 mx-1" />
         <button
