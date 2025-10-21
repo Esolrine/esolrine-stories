@@ -91,10 +91,10 @@ export default function StoryForm({ story }: StoryFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6 space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="space-y-6">
         {/* Language tabs */}
-        <div className="border-b border-gray-200">
+        <div className="border-b border-gray-200 pb-6">
           <nav className="-mb-px flex space-x-8">
             <button
               type="button"

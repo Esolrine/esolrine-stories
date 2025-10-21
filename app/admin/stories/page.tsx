@@ -25,7 +25,7 @@ export default async function StoriesPage() {
       </div>
 
       {stories.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-12 text-center">
+        <div className="py-16 text-center border-t border-gray-200">
           <p className="text-gray-700 mb-4">Aucune histoire pour le moment</p>
           <Link
             href="/admin/stories/new"
@@ -35,84 +35,61 @@ export default async function StoriesPage() {
           </Link>
         </div>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                  Titre
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                  Statut
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                  Date de publication
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                  Modifié
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {stories.map((story) => (
-                <tr key={story.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
-                    <div className="flex flex-col">
-                      <Link
-                        href={`/admin/stories/${story.id}`}
-                        className="text-sm font-medium text-gray-900 hover:text-emerald-600"
-                      >
-                        {story.title_fr}
-                      </Link>
-                      <p className="text-sm text-gray-600 truncate max-w-md">
-                        {story.excerpt_fr}
-                      </p>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+        <div className="space-y-6">
+          {stories.map((story, index) => (
+            <div
+              key={story.id}
+              className={`py-6 ${index !== 0 ? 'border-t border-gray-200' : ''}`}
+            >
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Link
+                      href={`/admin/stories/${story.id}`}
+                      className="text-xl font-semibold text-gray-900 hover:text-emerald-600 transition-colors"
+                    >
+                      {story.title_fr}
+                    </Link>
                     <span
-                      className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      className={`px-2 py-1 text-xs font-medium uppercase tracking-wide ${
                         story.published
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : 'bg-amber-100 text-amber-800'
+                          ? 'text-emerald-700'
+                          : 'text-amber-700'
                       }`}
                     >
                       {story.published ? 'Publié' : 'Brouillon'}
                     </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                    {new Date(story.publish_date).toLocaleDateString('fr-FR')}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                    {new Date(story.updated_at).toLocaleDateString('fr-FR')}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div className="flex items-center justify-end gap-3">
-                      <Link
-                        href={`/admin/stories/${story.id}`}
-                        className="text-emerald-600 hover:text-emerald-900"
-                      >
-                        Modifier
-                      </Link>
-                      {story.published && (
-                        <Link
-                          href={`/stories/${story.id}`}
-                          target="_blank"
-                          className="text-gray-600 hover:text-gray-900"
-                        >
-                          Voir
-                        </Link>
-                      )}
-                      <DeleteButton storyId={story.id} storyTitle={story.title_fr} />
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                    {story.excerpt_fr}
+                  </p>
+                  <div className="flex flex-wrap gap-4 text-xs text-gray-500 uppercase tracking-wide">
+                    <span>Publié : {new Date(story.publish_date).toLocaleDateString('fr-FR')}</span>
+                    <span>•</span>
+                    <span>Modifié : {new Date(story.updated_at).toLocaleDateString('fr-FR')}</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 text-sm font-medium">
+                  <Link
+                    href={`/admin/stories/${story.id}`}
+                    className="text-emerald-600 hover:text-emerald-900 transition-colors"
+                  >
+                    Modifier
+                  </Link>
+                  {story.published && (
+                    <Link
+                      href={`/stories/${story.id}`}
+                      target="_blank"
+                      className="text-gray-600 hover:text-gray-900 transition-colors"
+                    >
+                      Voir
+                    </Link>
+                  )}
+                  <DeleteButton storyId={story.id} storyTitle={story.title_fr} />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
