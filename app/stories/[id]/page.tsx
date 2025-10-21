@@ -124,7 +124,7 @@ export default async function StoryPage({ params }: Props) {
             {translatedStory && (
               <div className="mt-8 pt-8 border-t border-gray-200">
                 <p className="text-sm text-gray-600 mb-2">
-                  {story.language === 'en' ? 'Version française disponible' : 'English version available'}
+                  {story.language === 'en' ? t('frenchVersionAvailable') : t('englishVersionAvailable')}
                 </p>
                 <Link
                   href={`/stories/${translatedStory.id}`}
@@ -140,7 +140,7 @@ export default async function StoryPage({ params }: Props) {
         <div className="max-w-3xl mx-auto mt-12 text-center">
           <div className="border-t border-gray-200 pt-8">
             <p className="text-gray-600 mb-4 text-sm">
-              Follow Esolrine for more stories
+              {t('followAuthor')}
             </p>
             <SocialLinks />
           </div>

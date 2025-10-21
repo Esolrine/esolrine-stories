@@ -158,59 +158,71 @@ export default function RichTextEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
-          className={`px-3 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
+          className={`px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
             editor.isActive({ textAlign: 'left' }) ? 'bg-gray-400 text-black' : 'bg-gray-100'
           }`}
-          title="Align Left"
+          title="Aligner à gauche"
         >
-          ⬅
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 12h12M3 18h18" />
+          </svg>
         </button>
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
-          className={`px-3 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
+          className={`px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
             editor.isActive({ textAlign: 'center' }) ? 'bg-gray-400 text-black' : 'bg-gray-100'
           }`}
-          title="Center"
+          title="Centrer"
         >
-          ↔
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M7 12h10M3 18h18" />
+          </svg>
         </button>
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
-          className={`px-3 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
+          className={`px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
             editor.isActive({ textAlign: 'right' }) ? 'bg-gray-400 text-black' : 'bg-gray-100'
           }`}
-          title="Align Right"
+          title="Aligner à droite"
         >
-          ➡
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M9 12h12M3 18h18" />
+          </svg>
         </button>
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-          className={`px-3 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
+          className={`px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
             editor.isActive({ textAlign: 'justify' }) ? 'bg-gray-400 text-black' : 'bg-gray-100'
           }`}
-          title="Justify"
+          title="Justifier"
         >
-          ≡
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
         </button>
         <div className="w-px bg-gray-300 mx-1" />
         <button
           type="button"
           onClick={() => editor.chain().focus().outdent().run()}
-          className="px-3 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 bg-gray-100"
-          title="Decrease Indent"
+          className="px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 bg-gray-100"
+          title="Réduire l'indentation"
         >
-          ⇤
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+          </svg>
         </button>
         <button
           type="button"
           onClick={() => editor.chain().focus().indent().run()}
-          className="px-3 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 bg-gray-100"
-          title="Increase Indent (Alinéa)"
+          className="px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 bg-gray-100"
+          title="Augmenter l'indentation (Alinéa)"
         >
-          ⇥
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+          </svg>
         </button>
         <div className="w-px bg-gray-300 mx-1" />
         <button

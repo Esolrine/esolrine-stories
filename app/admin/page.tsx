@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import { getStories, Story } from '@/lib/db';
+import { getTranslations } from 'next-intl/server';
 
 export default async function AdminDashboard() {
+  const t = await getTranslations('admin.dashboard');
+  const tCommon = await getTranslations('common');
   let stories: Story[] = [];
 
   try {
@@ -16,30 +19,30 @@ export default async function AdminDashboard() {
 
   return (
     <div className="max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="text-sm font-medium text-gray-700 mb-2">
-            Total Stories
+            {t('totalStories')}
           </h3>
           <p className="text-3xl font-bold text-gray-900">{stories.length}</p>
         </div>
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">Published</h3>
+          <h3 className="text-sm font-medium text-gray-700 mb-2">{t('published')}</h3>
           <p className="text-3xl font-bold text-emerald-600">
             {publishedCount}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">Drafts</h3>
+          <h3 className="text-sm font-medium text-gray-700 mb-2">{t('drafts')}</h3>
           <p className="text-3xl font-bold text-amber-600">{draftCount}</p>
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-gray-900">Quick Actions</h2>
+          <h2 className="text-xl font-semibold text-gray-900">{t('quickActions')}</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Link
@@ -59,7 +62,7 @@ export default async function AdminDashboard() {
                 d="M12 4v16m8-8H4"
               />
             </svg>
-            <span className="font-medium text-gray-700">Create New Story</span>
+            <span className="font-medium text-gray-700">{t('createNewStory')}</span>
           </Link>
           <Link
             href="/admin/stories"
@@ -78,7 +81,7 @@ export default async function AdminDashboard() {
                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               />
             </svg>
-            <span className="font-medium text-gray-700">Manage Stories</span>
+            <span className="font-medium text-gray-700">{t('manageStories')}</span>
           </Link>
         </div>
       </div>
@@ -86,7 +89,7 @@ export default async function AdminDashboard() {
       {stories.length > 0 && (
         <div className="bg-white rounded-lg shadow p-6 mt-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Recent Stories
+            {t('recentStories')}
           </h2>
           <div className="space-y-3">
             {stories.slice(0, 5).map((story) => (
@@ -109,7 +112,7 @@ export default async function AdminDashboard() {
                         : 'bg-amber-100 text-amber-800'
                     }`}
                   >
-                    {story.published ? 'Published' : 'Draft'}
+                    {story.published ? tCommon('published') : tCommon('draft')}
                   </span>
                 </div>
               </Link>
