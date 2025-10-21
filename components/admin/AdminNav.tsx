@@ -16,9 +16,9 @@ export default function AdminNav({ user }: AdminNavProps) {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/admin', label: 'Dashboard' },
-    { href: '/admin/stories', label: 'Stories' },
-    { href: '/admin/stories/new', label: 'New Story' },
+    { href: '/admin', label: 'Tableau de bord' },
+    { href: '/admin/stories', label: 'Histoires' },
+    { href: '/admin/stories/new', label: 'Nouvelle histoire' },
   ];
 
   return (
@@ -52,14 +52,14 @@ export default function AdminNav({ user }: AdminNavProps) {
               target="_blank"
               className="text-sm text-gray-600 hover:text-gray-900"
             >
-              View Site
+              Voir le site
             </Link>
             {user && (
               <div className="flex items-center gap-3">
                 {user.image && (
                   <img
                     src={user.image}
-                    alt={user.name || 'User'}
+                    alt={user.name || 'Utilisateur'}
                     className="w-8 h-8 rounded-full"
                   />
                 )}
@@ -67,7 +67,7 @@ export default function AdminNav({ user }: AdminNavProps) {
                   onClick={() => signOut({ callbackUrl: '/' })}
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
-                  Sign Out
+                  Déconnexion
                 </button>
               </div>
             )}
