@@ -160,7 +160,7 @@ export default function StoryForm({ story }: StoryFormProps) {
 
         <div>
           <label htmlFor="translationId" className="block text-sm font-medium text-gray-700 mb-2">
-            Link to translation (optional)
+            {t('translationLink')}
           </label>
           <select
             id="translationId"
@@ -168,7 +168,7 @@ export default function StoryForm({ story }: StoryFormProps) {
             onChange={(e) => setFormData({ ...formData, translationId: e.target.value })}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900"
           >
-            <option value="">No translation</option>
+            <option value="">{t('noTranslation')}</option>
             {availableStories.map((s) => (
               <option key={s.id} value={s.id}>
                 {s.title} ({s.language})

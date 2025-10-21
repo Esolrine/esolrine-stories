@@ -13,11 +13,6 @@
     "description": "Histoires et récits littéraires",
     "noStories": "Aucune histoire publiée pour le moment."
   },
-  "story": {
-    "backToHome": "← Retour aux histoires",
-    "notFound": "Histoire introuvable",
-    "loading": "Chargement..."
-  },
   "admin": {
     "nav": {
       "dashboard": "Tableau de bord",
@@ -26,7 +21,14 @@
     },
     "dashboard": {
       "title": "Tableau de bord administrateur",
-      "welcome": "Bienvenue dans le panneau d'administration"
+      "welcome": "Bienvenue dans le panneau d'administration",
+      "totalStories": "Total des histoires",
+      "published": "Publiées",
+      "drafts": "Brouillons",
+      "quickActions": "Actions rapides",
+      "createNewStory": "Créer une nouvelle histoire",
+      "manageStories": "Gérer les histoires",
+      "recentStories": "Histoires récentes"
     },
     "login": {
       "title": "Connexion administrateur",
@@ -59,7 +61,20 @@
       "published": "Publié",
       "language": "Langue",
       "english": "Anglais",
-      "french": "Français"
+      "french": "Français",
+      "translationLink": "Lier à la traduction (optionnel)",
+      "noTranslation": "Aucune traduction",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement..."
     }
+  },
+  "story": {
+    "backToHome": "← Retour aux histoires",
+    "notFound": "Histoire introuvable",
+    "loading": "Chargement...",
+    "followAuthor": "Suivez Esolrine pour plus d'histoires",
+    "frenchVersionAvailable": "Version française disponible",
+    "englishVersionAvailable": "Version anglaise disponible"
   }
 }

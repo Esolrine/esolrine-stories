@@ -16,7 +16,10 @@
   "story": {
     "backToHome": "← Back to all stories",
     "notFound": "Story not found",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "followAuthor": "Follow Esolrine for more stories",
+    "frenchVersionAvailable": "French version available",
+    "englishVersionAvailable": "English version available"
   },
   "admin": {
     "nav": {
@@ -26,7 +29,14 @@
     },
     "dashboard": {
       "title": "Admin Dashboard",
-      "welcome": "Welcome to the admin panel"
+      "welcome": "Welcome to the admin panel",
+      "totalStories": "Total Stories",
+      "published": "Published",
+      "drafts": "Drafts",
+      "quickActions": "Quick Actions",
+      "createNewStory": "Create New Story",
+      "manageStories": "Manage Stories",
+      "recentStories": "Recent Stories"
     },
     "login": {
       "title": "Admin Login",
@@ -59,7 +69,12 @@
       "published": "Published",
       "language": "Language",
       "english": "English",
-      "french": "French"
+      "french": "French",
+      "translationLink": "Link to translation (optional)",
+      "noTranslation": "No translation",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving..."
     }
   }
 }
