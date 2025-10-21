@@ -85,7 +85,7 @@ export default async function Home() {
                     </p>
 
                     <div className="mt-4 text-emerald-700 font-medium text-sm uppercase tracking-wide group-hover:text-emerald-800">
-                      Lire la suite →
+                      {locale === 'fr' ? 'Découvrir →' : 'Discover →'}
                     </div>
                   </Link>
                 </article>
