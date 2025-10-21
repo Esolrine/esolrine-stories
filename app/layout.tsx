@@ -4,7 +4,7 @@ import "./globals.css";
 import SessionProvider from "@/components/SessionProvider";
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
-import LocaleSwitcher from "@/components/LocaleSwitcher";
+import ConditionalLocaleSwitcher from "@/components/ConditionalLocaleSwitcher";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -61,7 +61,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages} locale={locale}>
           <SessionProvider>
             <div className="fixed top-4 right-4 z-50">
-              <LocaleSwitcher />
+              <ConditionalLocaleSwitcher />
             </div>
             {children}
           </SessionProvider>

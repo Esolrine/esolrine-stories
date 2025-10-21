@@ -206,23 +206,15 @@ export default function RichTextEditor({
         <div className="w-px bg-gray-300 mx-1" />
         <button
           type="button"
-          onClick={() => editor.chain().focus().outdent().run()}
-          className="px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 bg-gray-100"
-          title="Réduire l'indentation"
+          onClick={() => editor.chain().focus().toggleIndent().run()}
+          className={`px-3 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 ${
+            editor.isActive('paragraph', { indent: 2 }) || editor.isActive('heading', { indent: 2 })
+              ? 'bg-gray-400 text-black'
+              : 'bg-gray-100'
+          }`}
+          title="Alinéa (retrait de première ligne)"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          onClick={() => editor.chain().focus().indent().run()}
-          className="px-2 py-1 rounded border border-gray-400 text-gray-900 font-semibold hover:bg-gray-300 bg-gray-100"
-          title="Augmenter l'indentation (Alinéa)"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-          </svg>
+          ¶
         </button>
         <div className="w-px bg-gray-300 mx-1" />
         <button

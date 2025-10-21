@@ -11,6 +11,7 @@ declare module '@tiptap/core' {
     indent: {
       indent: () => ReturnType;
       outdent: () => ReturnType;
+      toggleIndent: () => ReturnType;
     };
   }
 }
@@ -21,8 +22,8 @@ export const IndentExtension = Extension.create<IndentOptions>({
   addOptions() {
     return {
       types: ['paragraph', 'heading'],
-      indentLevels: [0, 2, 4, 6, 8],
-      defaultIndentLevel: 0,
+      indentLevels: [0, 2],
+      defaultIndentLevel: 2, // Alinéa par défaut (style livre)
     };
   },
 
@@ -54,6 +55,26 @@ export const IndentExtension = Extension.create<IndentOptions>({
 
   addCommands() {
     return {
+      toggleIndent:
+        () =>
+        ({ commands, state }) => {
+          const { selection } = state;
+          const { $from } = selection;
+          const node = $from.node();
+
+          if (!this.options.types.includes(node.type.name)) {
+            return false;
+          }
+
+          const currentIndent = node.attrs.indent || this.options.defaultIndentLevel;
+          // Toggle entre 0 (pas d'alinéa) et 2 (alinéa)
+          const newIndent = currentIndent === 0 ? 2 : 0;
+
+          return commands.updateAttributes(node.type.name, {
+            indent: newIndent,
+          });
+        },
+
       indent:
         () =>
         ({ commands, state }) => {
