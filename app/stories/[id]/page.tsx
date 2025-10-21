@@ -86,7 +86,7 @@ export default async function StoryPage({ params }: Props) {
         <div className="max-w-3xl mx-auto mt-12 text-center">
           <div className="border-t border-gray-200 pt-8">
             <p className="text-gray-600 mb-4 text-sm">
-              Suivez Esolrine pour plus d'histoires
+              Suivez Esolrine pour plus d&apos;histoires
             </p>
             <SocialLinks />
           </div>
