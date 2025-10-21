@@ -39,15 +39,16 @@ export async function PUT(
     const data = await request.json();
 
     const updatedStory = await updateStory(parseInt(id), {
-      title: data.title,
-      content: data.content,
-      excerpt: data.excerpt,
+      titleFr: data.titleFr,
+      titleEn: data.titleEn,
+      contentFr: data.contentFr,
+      contentEn: data.contentEn,
+      excerptFr: data.excerptFr,
+      excerptEn: data.excerptEn,
       coverImage: data.coverImage,
       tags: data.tags,
       published: data.published,
       publishDate: data.publishDate ? new Date(data.publishDate) : undefined,
-      language: data.language,
-      translationId: data.translationId,
     });
 
     // Revalidate all pages that might show this story

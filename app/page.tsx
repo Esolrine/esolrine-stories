@@ -10,7 +10,7 @@ export default async function Home() {
   let stories: Story[] = [];
 
   try {
-    stories = await getStories(true, locale as 'en' | 'fr'); // Only published stories in current language
+    stories = await getStories(true); // Only published stories
   } catch {
     // Database not initialized yet
     console.log('Database not initialized yet');
@@ -48,7 +48,7 @@ export default async function Home() {
                       <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-md overflow-hidden bg-gray-100">
                         <img
                           src={story.cover_image}
-                          alt={story.title}
+                          alt={locale === 'fr' ? story.title_fr : story.title_en}
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -56,7 +56,7 @@ export default async function Home() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-4 mb-3">
                         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 hover:text-emerald-700 transition-colors font-[family-name:var(--font-eb-garamond)]">
-                          {story.title}
+                          {locale === 'fr' ? story.title_fr : story.title_en}
                         </h2>
                         <time className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">
                           {new Date(story.publish_date).toLocaleDateString(locale, {
@@ -67,7 +67,7 @@ export default async function Home() {
                         </time>
                       </div>
                       <p className="text-gray-700 mb-4 leading-relaxed line-clamp-2 font-[family-name:var(--font-eb-garamond)]">
-                        {story.excerpt}
+                        {locale === 'fr' ? story.excerpt_fr : story.excerpt_en}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {story.tags && story.tags.length > 0 && story.tags.map((tag) => (

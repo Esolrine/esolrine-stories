@@ -1,10 +1,10 @@
-import { migrateStoriesTable } from '@/lib/db';
+import { migrateStoriesToBilingual } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    await migrateStoriesTable();
-    return NextResponse.json({ message: 'Migration completed successfully' });
+    await migrateStoriesToBilingual();
+    return NextResponse.json({ message: 'Migration to bilingual schema completed successfully' });
   } catch (error) {
     console.error('Migration error:', error);
     return NextResponse.json(

@@ -28,23 +28,24 @@ export async function POST(request: NextRequest) {
 
     const data = await request.json();
 
-    if (!data.title || !data.content || !data.excerpt) {
+    if (!data.titleFr || !data.titleEn || !data.contentFr || !data.contentEn || !data.excerptFr || !data.excerptEn) {
       return NextResponse.json(
-        { error: 'Title, content, and excerpt are required' },
+        { error: 'French and English titles, contents, and excerpts are required' },
         { status: 400 }
       );
     }
 
     const story = await createStory({
-      title: data.title,
-      content: data.content,
-      excerpt: data.excerpt,
+      titleFr: data.titleFr,
+      titleEn: data.titleEn,
+      contentFr: data.contentFr,
+      contentEn: data.contentEn,
+      excerptFr: data.excerptFr,
+      excerptEn: data.excerptEn,
       coverImage: data.coverImage,
       tags: data.tags || [],
       published: data.published || false,
       publishDate: data.publishDate ? new Date(data.publishDate) : new Date(),
-      language: data.language || 'en',
-      translationId: data.translationId,
     });
 
     // Revalidate homepage to show new story

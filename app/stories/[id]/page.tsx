@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import SocialLinks from '@/components/SocialLinks';
-import { getLocale, getTranslations } from 'next-intl/server';
+import StoryContent from '@/components/story/StoryContent';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${story.title} | Esolrine`,
-    description: story.excerpt,
+    title: `${story.title_fr} | Esolrine`,
+    description: story.excerpt_fr,
     openGraph: {
-      title: story.title,
-      description: story.excerpt,
+      title: story.title_fr,
+      description: story.excerpt_fr,
       type: 'article',
       publishedTime: new Date(story.publish_date).toISOString(),
       authors: ['Esolrine'],
@@ -34,15 +34,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
               url: story.cover_image,
               width: 1200,
               height: 630,
-              alt: story.title,
+              alt: story.title_fr,
             },
           ]
         : [],
     },
     twitter: {
       card: 'summary_large_image',
-      title: story.title,
-      description: story.excerpt,
+      title: story.title_fr,
+      description: story.excerpt_fr,
       images: story.cover_image ? [story.cover_image] : [],
     },
   };
@@ -50,18 +50,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StoryPage({ params }: Props) {
   const { id } = await params;
-  const locale = await getLocale();
-  const t = await getTranslations('story');
   const story = await getStoryById(parseInt(id));
 
   if (!story || !story.published) {
     notFound();
-  }
-
-  // Get translation if it exists
-  let translatedStory = null;
-  if (story.translation_id) {
-    translatedStory = await getStoryById(story.translation_id);
   }
 
   return (
@@ -85,62 +77,16 @@ export default async function StoryPage({ params }: Props) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            {t('backToHome')}
+            Retour aux histoires
           </Link>
         </nav>
 
-        <article className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg">
-          <div className="p-6 md:p-12">
-            <header className="mb-10">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-[family-name:var(--font-eb-garamond)] leading-tight">
-                {story.title}
-              </h1>
-              <div className="flex items-center justify-between flex-wrap gap-4 pb-6 border-b border-gray-200">
-                <div className="flex flex-wrap gap-2">
-                  {story.tags && story.tags.length > 0 && story.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 bg-gray-100 text-gray-700 rounded text-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <time className="text-sm text-gray-500">
-                  {new Date(story.publish_date).toLocaleDateString(locale, {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-              </div>
-            </header>
-
-            <div
-              className="prose prose-lg prose-emerald max-w-none font-[family-name:var(--font-eb-garamond)] text-[#1a1a1a] prose-headings:text-black prose-p:text-[#1a1a1a] prose-p:leading-relaxed prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-li:text-[#1a1a1a] prose-blockquote:text-[#2c2c2c] prose-strong:text-black"
-              dangerouslySetInnerHTML={{ __html: story.content }}
-            />
-
-            {translatedStory && (
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <p className="text-sm text-gray-600 mb-2">
-                  {story.language === 'en' ? t('frenchVersionAvailable') : t('englishVersionAvailable')}
-                </p>
-                <Link
-                  href={`/stories/${translatedStory.id}`}
-                  className="text-emerald-600 hover:text-emerald-700 font-medium"
-                >
-                  {translatedStory.title} →
-                </Link>
-              </div>
-            )}
-          </div>
-        </article>
+        <StoryContent story={story} />
 
         <div className="max-w-3xl mx-auto mt-12 text-center">
           <div className="border-t border-gray-200 pt-8">
             <p className="text-gray-600 mb-4 text-sm">
-              {t('followAuthor')}
+              Suivez Esolrine pour plus d'histoires
             </p>
             <SocialLinks />
           </div>

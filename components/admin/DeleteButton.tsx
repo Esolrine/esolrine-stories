@@ -13,7 +13,7 @@ export default function DeleteButton({ storyId, storyTitle }: DeleteButtonProps)
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {
-    if (!confirm(`Are you sure you want to delete "${storyTitle}"? This action cannot be undone.`)) {
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer "${storyTitle}" ? Cette action est irréversible.`)) {
       return;
     }
 
@@ -29,7 +29,7 @@ export default function DeleteButton({ storyId, storyTitle }: DeleteButtonProps)
       router.refresh();
     } catch (error) {
       console.error('Error deleting story:', error);
-      alert('Failed to delete story');
+      alert('Échec de la suppression de l\'histoire');
       setIsDeleting(false);
     }
   };
@@ -40,7 +40,7 @@ export default function DeleteButton({ storyId, storyTitle }: DeleteButtonProps)
       disabled={isDeleting}
       className="text-red-600 hover:text-red-900 disabled:opacity-50"
     >
-      {isDeleting ? 'Deleting...' : 'Delete'}
+      {isDeleting ? 'Suppression...' : 'Supprimer'}
     </button>
   );
 }
