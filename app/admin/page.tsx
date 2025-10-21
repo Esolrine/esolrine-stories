@@ -18,33 +18,31 @@ export default async function AdminDashboard() {
     <div className="max-w-4xl">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Tableau de bord administrateur</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 pb-12 border-b border-gray-200">
+        <div className="py-4">
+          <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
             Total des histoires
           </h3>
-          <p className="text-3xl font-bold text-gray-900">{stories.length}</p>
+          <p className="text-4xl font-bold text-gray-900">{stories.length}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">Publiées</h3>
-          <p className="text-3xl font-bold text-emerald-600">
+        <div className="py-4">
+          <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Publiées</h3>
+          <p className="text-4xl font-bold text-emerald-600">
             {publishedCount}
           </p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">Brouillons</h3>
-          <p className="text-3xl font-bold text-amber-600">{draftCount}</p>
+        <div className="py-4">
+          <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Brouillons</h3>
+          <p className="text-4xl font-bold text-amber-600">{draftCount}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-gray-900">Actions rapides</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mb-12 pb-12 border-b border-gray-200">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">Actions rapides</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Link
             href="/admin/stories/new"
-            className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-emerald-500 hover:bg-emerald-50 transition-colors"
+            className="flex items-center gap-3 p-6 border border-gray-300 hover:border-emerald-600 transition-colors"
           >
             <svg
               className="w-6 h-6 text-gray-400"
@@ -63,7 +61,7 @@ export default async function AdminDashboard() {
           </Link>
           <Link
             href="/admin/stories"
-            className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-emerald-500 hover:bg-emerald-50 transition-colors"
+            className="flex items-center gap-3 p-6 border border-gray-300 hover:border-emerald-600 transition-colors"
           >
             <svg
               className="w-6 h-6 text-gray-400"
@@ -84,29 +82,29 @@ export default async function AdminDashboard() {
       </div>
 
       {stories.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6 mt-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
             Histoires récentes
           </h2>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {stories.slice(0, 5).map((story) => (
               <Link
                 key={story.id}
                 href={`/admin/stories/${story.id}`}
-                className="block p-3 hover:bg-gray-50 rounded-md transition-colors"
+                className="block py-4 border-b border-gray-200 hover:border-emerald-600 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium text-gray-900">{story.title_fr}</h3>
-                    <p className="text-sm text-gray-600">
+                    <h3 className="font-medium text-gray-900 text-lg">{story.title_fr}</h3>
+                    <p className="text-sm text-gray-500 mt-1">
                       {new Date(story.updated_at).toLocaleDateString('fr-FR')}
                     </p>
                   </div>
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    className={`px-3 py-1 text-xs font-medium uppercase tracking-wide ${
                       story.published
-                        ? 'bg-emerald-100 text-emerald-800'
-                        : 'bg-amber-100 text-amber-800'
+                        ? 'text-emerald-700'
+                        : 'text-amber-700'
                     }`}
                   >
                     {story.published ? 'Publié' : 'Brouillon'}
