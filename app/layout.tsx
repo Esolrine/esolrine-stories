@@ -17,8 +17,8 @@ const ebGaramond = EB_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Esolrine | Stories from a World of Magic",
-    template: "%s | Esolrine",
+    default: "Esolrine Stories | Stories from a World of Magic",
+    template: "%s | Esolrine Stories",
   },
   description:
     "Explore short stories from the Esolrine universe - a world of solarpunk magic and possibility. Read tales that expand the world of the Esolrine webtoon.",
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://esolrine.com",
-    siteName: "Esolrine",
-    title: "Esolrine | Stories from a World of Magic",
+    siteName: "Esolrine Stories",
+    title: "Esolrine Stories | Stories from a World of Magic",
     description:
       "Explore short stories from the Esolrine universe - a world of solarpunk magic and possibility.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Esolrine | Stories from a World of Magic",
+    title: "Esolrine Stories | Stories from a World of Magic",
     description:
       "Explore short stories from the Esolrine universe - a world of solarpunk magic and possibility.",
   },
