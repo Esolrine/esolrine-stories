@@ -11,7 +11,8 @@
   "home": {
     "title": "Écrits",
     "description": "Les side stories d'Esolrine",
-    "noStories": "Aucune histoire publiée pour le moment."
+    "noStories": "Aucune histoire publiée pour le moment.",
+    "footer": "Partie de l'univers du webtoon Esolrine"
   },
   "admin": {
     "nav": {

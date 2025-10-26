@@ -11,7 +11,15 @@ export default async function Home() {
   let stories: Story[] = [];
 
   try {
-    stories = await getStories(true); // Only published stories
+    const allStories = await getStories(true); // Only published stories
+    // Filter stories to only show those with content in the selected language
+    stories = allStories.filter(story => {
+      if (locale === 'fr') {
+        return story.title_fr && story.title_fr.trim() !== '';
+      } else {
+        return story.title_en && story.title_en.trim() !== '';
+      }
+    });
   } catch {
     // Database not initialized yet
     console.log('Database not initialized yet');
@@ -103,7 +111,7 @@ export default async function Home() {
 
         <footer className="text-center mt-20 pt-12 border-t border-gray-200 text-gray-500 text-sm font-light">
           <p>
-            Part of the Esolrine webtoon universe
+            {t('footer')}
           </p>
         </footer>
       </div>

@@ -11,7 +11,8 @@
   "home": {
     "title": "Writings",
     "description": "Esolrine's side stories",
-    "noStories": "No stories published yet."
+    "noStories": "No stories published yet.",
+    "footer": "Part of the Esolrine webtoon universe"
   },
   "story": {
     "backToHome": "← Back to all stories",
