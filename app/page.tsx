@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getStories, Story } from '@/lib/db';
 import SocialLinks from '@/components/SocialLinks';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
@@ -39,9 +40,18 @@ export default async function Home() {
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 font-[family-name:var(--font-eb-garamond)] tracking-tight">
             Esolrine
           </h1>
-          <p className="text-xl text-gray-600 mb-8 font-light">
+          <p className="text-xl text-gray-600 mb-6 font-light">
             {t('description')}
           </p>
+          <div className="flex justify-center mb-8">
+            <Image
+              src="/esolrine-logo.png"
+              alt="Esolrine"
+              width={120}
+              height={120}
+              className="rounded-full"
+            />
+          </div>
           <SocialLinks />
         </header>
 
