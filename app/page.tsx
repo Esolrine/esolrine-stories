@@ -4,6 +4,9 @@ import SocialLinks from '@/components/SocialLinks';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { getLocale, getTranslations } from 'next-intl/server';
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const locale = await getLocale();
   const t = await getTranslations('home');
